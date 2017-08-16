@@ -14,13 +14,22 @@
 
 package com.codahale.gimli;
 
+/**
+ * An implementation of the secure Gimli permutation.
+ */
 public interface Gimli {
 
-  static void transform(int[] state) {
-    int x;
-    int y;
-    int z;
+  /**
+   * Performs the Gimli permutation.
+   *
+   * @param state an 384-bit of 12 32-bit words
+   */
+  static void permute(int[] state) {
     for (int round = 24; round > 0; round--) {
+      int x;
+      int y;
+      int z;
+
       for (int column = 0; column < 4; column++) {
         x = Integer.rotateLeft(state[column], 24);
         y = Integer.rotateLeft(state[4 + column], 9);
@@ -29,7 +38,6 @@ public interface Gimli {
         state[8 + column] = x ^ (z << 1) ^ ((y & z) << 2);
         state[4 + column] = y ^ x ^ ((x | z) << 1);
         state[column] = z ^ y ^ ((x & y) << 3);
-
       }
 
       // small swap

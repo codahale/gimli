@@ -29,7 +29,7 @@ class GimliTest {
         0xf1bbcfc8, 0x8ff34a5a, 0x2e2ac522, 0xcc624026
     };
 
-    Gimli.transform(x);
+    Gimli.permute(x);
 
     assertArrayEquals(new int[]{
         0xba11c85a, 0x91bad119, 0x380ce880, 0xd24c2c68,
