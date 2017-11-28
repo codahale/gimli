@@ -14,9 +14,7 @@
 
 package com.codahale.gimli;
 
-/**
- * An implementation of the secure Gimli permutation.
- */
+/** An implementation of the secure Gimli permutation. */
 public class Gimli {
 
   /**
