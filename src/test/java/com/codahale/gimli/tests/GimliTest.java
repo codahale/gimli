@@ -14,15 +14,15 @@
 
 package com.codahale.gimli.tests;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 import com.codahale.gimli.Gimli;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class GimliTest {
+public class GimliTest {
 
   @Test
-  void testVector() {
+  public void testVector() {
     final int[] x =
         new int[] {
           0x00000000, 0x9e3779ba, 0x3c6ef37a, 0xdaa66d46,
