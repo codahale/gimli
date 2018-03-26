@@ -16,14 +16,18 @@
 package com.codahale.gimli;
 
 /** An implementation of the secure Gimli permutation. */
-public interface Gimli {
+public class Gimli {
+
+  private Gimli() {
+    /* singleton */
+  }
 
   /**
    * Performs the Gimli permutation.
    *
    * @param state a 384-bit array twelve 32-bit words
    */
-  static void permute(int[] state) {
+  public static void permute(int[] state) {
     for (int round = 24; round > 0; round--) {
       int x;
       int y;
