@@ -69,4 +69,24 @@ public class Gimli {
       }
     }
   }
+
+  public static void permute(byte[] state) {
+    final int[] buf = new int[12];
+    for (int i = 0; i < buf.length; i++) {
+      int off = i * 4;
+      int n = state[off] & 0xff;
+      n |= (state[++off] & 0xff) << 8;
+      n |= (state[++off] & 0xff) << 16;
+      n |= state[++off] << 24;
+      buf[i] = n;
+    }
+    permute(buf);
+    for (int i = 0; i < buf.length; i++) {
+      int off = i * 4;
+      state[off] = (byte) (buf[i]);
+      state[++off] = (byte) (buf[i] >>> 8);
+      state[++off] = (byte) (buf[i] >>> 16);
+      state[++off] = (byte) (buf[i] >>> 24);
+    }
+  }
 }
