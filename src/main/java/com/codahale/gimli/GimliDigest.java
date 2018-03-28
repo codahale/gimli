@@ -18,6 +18,9 @@ package com.codahale.gimli;
 import java.security.MessageDigest;
 import java.util.Arrays;
 
+/**
+ * An implementation of the Gimli hash algorithm.
+ */
 public class GimliDigest extends MessageDigest {
 
   private static final int RATE = 16;
@@ -25,6 +28,10 @@ public class GimliDigest extends MessageDigest {
   private final int digestLength;
   private int blockSize = 0;
 
+  /**
+   * Creates a new {@link GimliDigest} instance.
+   * @param digestLength the length of the resulting digest, in bytes
+   */
   public GimliDigest(int digestLength) {
     super("Gimli");
     this.digestLength = digestLength;
