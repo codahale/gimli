@@ -38,6 +38,11 @@ public class GimliDigest extends MessageDigest {
   }
 
   @Override
+  protected int engineGetDigestLength() {
+    return digestLength;
+  }
+
+  @Override
   protected void engineUpdate(byte input) {
     state[blockSize++] ^= input;
     if (blockSize == RATE) {
