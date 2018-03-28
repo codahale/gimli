@@ -29,14 +29,10 @@ public class Gimli {
    */
   public static void permute(int[] state) {
     for (int round = 24; round > 0; round--) {
-      int x;
-      int y;
-      int z;
-
       for (int column = 0; column < 4; column++) {
-        x = Integer.rotateLeft(state[column], 24);
-        y = Integer.rotateLeft(state[4 + column], 9);
-        z = state[8 + column];
+        final int x = Integer.rotateLeft(state[column], 24);
+        final int y = Integer.rotateLeft(state[4 + column], 9);
+        final int z = state[8 + column];
 
         state[8 + column] = x ^ (z << 1) ^ ((y & z) << 2);
         state[4 + column] = y ^ x ^ ((x | z) << 1);
@@ -45,22 +41,22 @@ public class Gimli {
 
       // small swap
       if ((round % 4) == 0) {
-        x = state[0];
+        final int x = state[0];
         state[0] = state[1];
         state[1] = x;
-        x = state[2];
+        final int y = state[2];
         state[2] = state[3];
-        state[3] = x;
+        state[3] = y;
       }
 
       //  big swap
       if ((round % 4) == 2) {
-        x = state[0];
+        final int x = state[0];
         state[0] = state[2];
         state[2] = x;
-        x = state[1];
+        final int y = state[1];
         state[1] = state[3];
-        state[3] = x;
+        state[3] = y;
       }
 
       // add constant
