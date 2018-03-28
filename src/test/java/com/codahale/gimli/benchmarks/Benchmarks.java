@@ -37,22 +37,23 @@ public class Benchmarks {
     Main.main(args);
   }
 
-  private final int[] x = new int[12];
-  private final byte[] b = new byte[48];
-  private final byte[] input = new byte[1024];
-
   @Benchmark
-  public void permute() {
+  public int[] permute() {
+    final int[] x = new int[12];
     Gimli.permute(x);
+    return x;
   }
 
   @Benchmark
-  public void permuteBytes() {
+  public byte[] permuteBytes() {
+    final byte[] b = new byte[48];
     Gimli.permute(b);
+    return b;
   }
 
   @Benchmark
   public byte[] hash() {
+    final byte[] input = new byte[1024];
     return new GimliDigest(32).digest(input);
   }
 }
