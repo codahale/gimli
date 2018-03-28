@@ -1,7 +1,7 @@
 # gimli
 
 A Java implementation of the [Gimli cryptographic
-permutation](https://gimli.cr.yp.to/gimli-20170627.pdf).
+permutation](https://gimli.cr.yp.to/gimli-20170627.pdf) and hashing algorithm.
 
 ## License
 

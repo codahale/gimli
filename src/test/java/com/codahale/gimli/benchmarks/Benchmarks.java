@@ -16,6 +16,7 @@
 package com.codahale.gimli.benchmarks;
 
 import com.codahale.gimli.Gimli;
+import com.codahale.gimli.GimliDigest;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.Main;
@@ -36,15 +37,22 @@ public class Benchmarks {
     Main.main(args);
   }
 
-  private final int[] x =
-      new int[] {
-        0x00000000, 0x9e3779ba, 0x3c6ef37a, 0xdaa66d46,
-        0x78dde724, 0x1715611a, 0xb54cdb2e, 0x53845566,
-        0xf1bbcfc8, 0x8ff34a5a, 0x2e2ac522, 0xcc624026
-      };
+  private final int[] x = new int[12];
+  private final byte[] b = new byte[48];
+  private final byte[] input = new byte[1024];
 
   @Benchmark
   public void permute() {
     Gimli.permute(x);
+  }
+
+  @Benchmark
+  public void permuteBytes() {
+    Gimli.permute(b);
+  }
+
+  @Benchmark
+  public byte[] hash() {
+    return new GimliDigest(32).digest(input);
   }
 }
