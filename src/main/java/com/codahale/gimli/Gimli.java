@@ -25,7 +25,7 @@ public class Gimli {
   /**
    * Performs the Gimli permutation.
    *
-   * @param state a 384-bit array twelve 32-bit words
+   * @param state a 384-bit array (twelve 32-bit words)
    */
   public static void permute(int[] state) {
     for (int round = 24; round > 0; round--) {
@@ -70,6 +70,11 @@ public class Gimli {
     }
   }
 
+  /**
+   * Performs the Gimli permutation.
+   *
+   * @param state a 384-bit array (forty-eight 8-bit words)
+   */
   public static void permute(byte[] state) {
     final int[] buf = new int[12];
     for (int i = 0; i < buf.length; i++) {
