@@ -21,7 +21,7 @@
 
   <groupId>com.codahale</groupId>
   <artifactId>gimli</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1-SNAPSHOT</version>
 
 
   <name>Gimli</name>
@@ -41,7 +41,7 @@
     <connection>scm:git:https://github.com/codahale/gimli.git</connection>
     <developerConnection>scm:git:https://github.com/codahale/gimli.git</developerConnection>
     <url>https://github.com/codahale/gimli</url>
-    <tag>v0.1.0</tag>
+    <tag>HEAD</tag>
   </scm>
   <developers>
     <developer>
