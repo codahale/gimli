@@ -27,7 +27,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class GimliDigestTest {
 
-  // from https://crypto.stackexchange.com/questions/51025/doubt-about-published-test-vectors-for-gimli-hash
+  // from
+  // https://crypto.stackexchange.com/questions/51025/doubt-about-published-test-vectors-for-gimli-hash
   private static final String[][] TEST_VECTORS = {
     {
       "54686572 65277320 706c656e 74792066 6f722074 68652062 6f746820 "
