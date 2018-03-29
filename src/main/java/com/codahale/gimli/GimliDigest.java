@@ -52,8 +52,18 @@ public class GimliDigest extends MessageDigest {
 
   @Override
   protected void engineUpdate(byte[] input, int offset, int len) {
-    for (int i = offset; i < len + offset; i++) {
-      engineUpdate(input[i]);
+    final int max = offset + len;
+    int idx = offset;
+    while (idx < max) {
+      final int n = Integer.min(max - idx, RATE);
+      for (int i = idx; i < idx + n; i++) {
+        state[blockSize++] ^= input[i];
+      }
+      idx += n;
+      if (blockSize == RATE) {
+        Gimli.permute(state);
+        blockSize = 0;
+      }
     }
   }
 
