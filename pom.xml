@@ -23,11 +23,10 @@
   <artifactId>gimli</artifactId>
   <version>0.1.2-SNAPSHOT</version>
 
-
   <name>Gimli</name>
   <url>https://github.com/codahale/gimli</url>
   <description>
-    An implementation of the Gimli secure transform.
+    An implementation of the Gimli secure transform and hash algorithm.
   </description>
   <licenses>
     <license>
