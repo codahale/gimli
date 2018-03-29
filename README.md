@@ -22,7 +22,7 @@ and this implementation conforms to the corrected test vectors.
 <dependency>
   <groupId>com.codahale</groupId>
   <artifactId>gimli</artifactId>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
 </dependency>
 ```
 
