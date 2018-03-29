@@ -44,6 +44,23 @@ public class GimliDigest extends MessageDigest {
   @Override
   protected void engineUpdate(byte input) {
     state[blockSize++] ^= input;
+    processBlock();
+  }
+
+  @Override
+  protected void engineUpdate(byte[] input, int offset, int len) {
+    while (len > 0) {
+      blockSize = Integer.min(len, RATE);
+      for (int i = 0; i < blockSize; i++) {
+        state[i] ^= input[offset + i];
+      }
+      offset += blockSize;
+      len -= blockSize;
+      processBlock();
+    }
+  }
+
+  private void processBlock() {
     if (blockSize == RATE) {
       Gimli.permute(state);
       blockSize = 0;
@@ -51,26 +68,8 @@ public class GimliDigest extends MessageDigest {
   }
 
   @Override
-  protected void engineUpdate(byte[] input, int offset, int len) {
-    final int max = offset + len;
-    int idx = offset;
-    while (idx < max) {
-      final int n = Integer.min(max - idx, RATE);
-      for (int i = idx; i < idx + n; i++) {
-        state[blockSize++] ^= input[i];
-      }
-      idx += n;
-      if (blockSize == RATE) {
-        Gimli.permute(state);
-        blockSize = 0;
-      }
-    }
-  }
-
-  @Override
   protected byte[] engineDigest() {
     final byte[] buf = Arrays.copyOf(state, state.length);
-
     buf[blockSize] ^= 0x1F;
     buf[RATE - 1] ^= 0x80;
     Gimli.permute(buf);
@@ -87,6 +86,7 @@ public class GimliDigest extends MessageDigest {
         Gimli.permute(buf);
       }
     }
+
     engineReset();
     return out;
   }
