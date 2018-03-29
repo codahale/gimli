@@ -52,9 +52,9 @@ public class GimliDigest extends MessageDigest {
     while (len > 0) {
       blockSize = Integer.min(len, RATE);
       for (int i = 0; i < blockSize; i++) {
-        state[i] ^= input[offset + i];
+        state[i] ^= input[offset];
+        offset++;
       }
-      offset += blockSize;
       len -= blockSize;
       processBlock();
     }
