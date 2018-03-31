@@ -18,6 +18,8 @@ package com.codahale.gimli.benchmarks;
 import com.codahale.gimli.Gimli;
 import com.codahale.gimli.GimliDigest;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
 import org.openjdk.jmh.Main;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -55,5 +57,23 @@ public class Benchmarks {
   public byte[] hash() {
     final byte[] input = new byte[1024];
     return new GimliDigest(32).digest(input);
+  }
+
+  @Benchmark
+  public byte[] hashMD5() throws NoSuchAlgorithmException {
+    final byte[] input = new byte[1024];
+    return MessageDigest.getInstance("MD5").digest(input);
+  }
+
+  @Benchmark
+  public byte[] hashSHA1() throws NoSuchAlgorithmException {
+    final byte[] input = new byte[1024];
+    return MessageDigest.getInstance("SHA1").digest(input);
+  }
+
+  @Benchmark
+  public byte[] hashSHA256() throws NoSuchAlgorithmException {
+    final byte[] input = new byte[1024];
+    return MessageDigest.getInstance("SHA256").digest(input);
   }
 }
