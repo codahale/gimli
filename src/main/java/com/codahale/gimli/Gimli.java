@@ -73,6 +73,8 @@ public class Gimli {
    */
   public static void permute(byte[] state) {
     final int[] buf = new int[12];
+
+    // convert from little-endian bytes to 32-bit words
     for (int i = 0; i < buf.length; i++) {
       int off = i * 4;
       int n = state[off] & 0xff;
@@ -81,7 +83,11 @@ public class Gimli {
       n |= state[++off] << 24;
       buf[i] = n;
     }
+
+    // run permutation
     permute(buf);
+
+    // convert from 32-bit words to little-endian bytes
     for (int i = 0; i < buf.length; i++) {
       int off = i * 4;
       state[off] = (byte) (buf[i]);
