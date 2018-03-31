@@ -16,7 +16,6 @@
 package com.codahale.gimli;
 
 import java.security.MessageDigest;
-import java.util.Arrays;
 
 /** An implementation of the Gimli hash algorithm. */
 public class GimliDigest extends MessageDigest {
@@ -66,26 +65,27 @@ public class GimliDigest extends MessageDigest {
 
   @Override
   protected byte[] engineDigest() {
-    final byte[] buf = Arrays.copyOf(state, state.length);
-    buf[blockSize] = (byte) (buf[blockSize] ^ 0x1F);
-    buf[RATE - 1] = (byte) (buf[RATE - 1] ^ 0x80);
-    Gimli.permute(buf);
+    try {
+      state[blockSize] = (byte) (state[blockSize] ^ 0x1F);
+      state[RATE - 1] = (byte) (state[RATE - 1] ^ 0x80);
+      Gimli.permute(state);
 
-    final byte[] out = new byte[digestLength];
-    int outputLen = out.length;
-    int offset = 0;
-    while (outputLen > 0) {
-      final int blockSize = Integer.min(outputLen, RATE);
-      System.arraycopy(buf, 0, out, offset, blockSize);
-      offset += blockSize;
-      outputLen -= blockSize;
-      if (outputLen > 0) {
-        Gimli.permute(buf);
+      final byte[] out = new byte[digestLength];
+      int outputLen = out.length;
+      int offset = 0;
+      while (outputLen > 0) {
+        final int blockSize = Integer.min(outputLen, RATE);
+        System.arraycopy(state, 0, out, offset, blockSize);
+        offset += blockSize;
+        outputLen -= blockSize;
+        if (outputLen > 0) {
+          Gimli.permute(state);
+        }
       }
+      return out;
+    } finally {
+      engineReset();
     }
-
-    engineReset();
-    return out;
   }
 
   @Override
