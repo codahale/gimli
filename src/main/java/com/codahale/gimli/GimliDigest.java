@@ -23,6 +23,7 @@ public class GimliDigest extends MessageDigest {
 
   private static final int RATE = 16;
   private final byte[] state = new byte[48];
+  private final byte[] one = new byte[1];
   private final int digestLength;
   private int blockSize = 0;
 
@@ -43,8 +44,8 @@ public class GimliDigest extends MessageDigest {
 
   @Override
   protected void engineUpdate(byte input) {
-    state[blockSize++] ^= input;
-    processBlock();
+    one[0] = input;
+    engineUpdate(one, 0, 1);
   }
 
   @Override
@@ -56,14 +57,10 @@ public class GimliDigest extends MessageDigest {
         offset++;
       }
       len -= blockSize;
-      processBlock();
-    }
-  }
-
-  private void processBlock() {
-    if (blockSize == RATE) {
-      Gimli.permute(state);
-      blockSize = 0;
+      if (blockSize == RATE) {
+        Gimli.permute(state);
+        blockSize = 0;
+      }
     }
   }
 
