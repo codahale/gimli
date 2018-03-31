@@ -70,8 +70,8 @@ public class GimliDigest extends MessageDigest {
   @Override
   protected byte[] engineDigest() {
     final byte[] buf = Arrays.copyOf(state, state.length);
-    buf[blockSize] ^= 0x1F;
-    buf[RATE - 1] ^= 0x80;
+    buf[blockSize] = (byte) (buf[blockSize] ^ 0x1F);
+    buf[RATE - 1] = (byte) (buf[RATE - 1] ^ 0x80);
     Gimli.permute(buf);
 
     final byte[] out = new byte[digestLength];
