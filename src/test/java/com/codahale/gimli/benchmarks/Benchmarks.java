@@ -17,27 +17,20 @@ package com.codahale.gimli.benchmarks;
 
 import com.codahale.gimli.Gimli;
 import com.codahale.gimli.GimliDigest;
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeUnit;
-import org.openjdk.jmh.Main;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.BenchmarkMode;
 import org.openjdk.jmh.annotations.Mode;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.runner.RunnerException;
 
 @State(Scope.Benchmark)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @BenchmarkMode(Mode.AverageTime)
 public class Benchmarks {
-
-  public static void main(String[] args) throws IOException, RunnerException {
-    Main.main(args);
-  }
 
   @Benchmark
   public int[] permute() {
