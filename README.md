@@ -26,6 +26,8 @@ and this implementation conforms to the corrected test vectors.
 </dependency>
 ```
 
+*Note: module name for Java 9+ is `com.codahale.gimli`.*
+
 ## Use the thing
 
 ```java
