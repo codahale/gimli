@@ -1,6 +1,6 @@
 # gimli
 
-[![Build Status](https://secure.travis-ci.org/codahale/gimli.svg)](http://travis-ci.org/codahale/gimli)
+[![CircleCI](https://circleci.com/gh/codahale/gimli.svg?style=svg)](https://circleci.com/gh/codahale/gimli)
 
 A Java implementation of the [Gimli cryptographic permutation](https://gimli.cr.yp.to) and hash 
 algorithm:
