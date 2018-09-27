@@ -1,5 +1,10 @@
 # Change Log
 
+## v0.1.3: 2018-09-26
+
+* Added automatic module name.
+* Slight optimizations.
+
 ## v0.1.2: 2018-03-29
 
 * Further optimization of `GimliDigest`.
