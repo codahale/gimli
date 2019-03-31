@@ -90,7 +90,7 @@ public class Gimli {
     // convert from 32-bit words to little-endian bytes
     for (int i = 0; i < buf.length; i++) {
       int off = i * 4;
-      state[off] = (byte) (buf[i]);
+      state[off] = (byte) buf[i];
       state[++off] = (byte) (buf[i] >>> 8);
       state[++off] = (byte) (buf[i] >>> 16);
       state[++off] = (byte) (buf[i] >>> 24);
